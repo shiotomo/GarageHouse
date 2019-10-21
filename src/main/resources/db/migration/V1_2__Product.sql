@@ -1,7 +1,8 @@
-CREATE TABLE IF NOT EXISTS `account` (
+CREATE TABLE IF NOT EXISTS `product` (
     `id` INT AUTO_INCREMENT,
     `name` text NOT NULL,
-    `password` text NOT NULL,
+    `created_by` INT NOT NULL,
+    `updated_by` INT NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX (`id`)
