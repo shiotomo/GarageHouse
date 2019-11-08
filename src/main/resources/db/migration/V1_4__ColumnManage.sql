@@ -3,6 +3,8 @@ CREATE TABLE IF NOT EXISTS `column_manage` (
     `product_id` BIGINT NOT NULL,
     `column_type` VARCHAR(256) NOT NULL,
     `validation` VARCHAR(256) NOT NULL,
+    `created_by` BIGINT NOT NULL,
+    `updated_by` BIGINT NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
