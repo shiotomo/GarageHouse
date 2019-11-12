@@ -3,5 +3,5 @@
 ## Setup
 
 ```
-create database garage_house;
+create database garage_house_develop;
 ```
