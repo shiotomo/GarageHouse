@@ -1,12 +1,13 @@
 package work.tomosse.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @RequestMapping("/")
-public class SessionController extends ControllerBase {
-
+@Controller
+public class SessionController {
     /**
      * Topページ用コントローラ
      *
@@ -25,10 +26,9 @@ public class SessionController extends ControllerBase {
      * @param mav
      * @return
      */
-    @GetMapping("/login")
+    @GetMapping("login")
     public ModelAndView login(ModelAndView mav) {
         mav.setViewName("session/login");
         return mav;
     }
-
 }

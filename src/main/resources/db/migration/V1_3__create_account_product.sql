@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS `account_product` (
     `id` BIGINT AUTO_INCREMENT,
+    `authority` INTEGER NOT NULL,
     `account_id` BIGINT NOT NULL,
     `product_id` BIGINT NOT NULL,
     `created_by` BIGINT NOT NULL,
