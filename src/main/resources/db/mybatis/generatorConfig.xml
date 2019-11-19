@@ -30,7 +30,7 @@
     <table tableName="account">
       <property name="useActualColumnNames" value="true" />
     </table>
-    <table tableName="account_property">
+    <table tableName="account_product">
       <property name="useActualColumnNames" value="true" />
     </table>
     <table tableName="column_manage">
