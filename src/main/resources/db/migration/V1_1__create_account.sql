@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `account` (
     `id` BIGINT AUTO_INCREMENT,
-    `name` VARCHAR(256) NOT NULL,
+    `name` VARCHAR(256) NOT NULL UNIQUE,
     `password` VARCHAR(256) NOT NULL,
     `api_token` VARCHAR(256) NOT NULL,
     `role` VARCHAR(256) NOT NULL,
