@@ -14,8 +14,23 @@ public class AccountService {
     @Autowired
     AccountRepository accountRepository;
 
+    /**
+     * accountを全件返却する
+     *
+     * @return
+     */
     public List<Account> selectAll() {
         return accountRepository.selectAll();
+    }
+
+    /**
+     * 指定したnameを持つaccountを取得する
+     *
+     * @param name
+     * @return
+     */
+    public Account selectByName(final String name) {
+        return accountRepository.selectByName(name);
     }
 
 }

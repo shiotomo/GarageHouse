@@ -5,4 +5,6 @@ spring:
     password:
     driverClassName: com.mysql.cj.jdbc.Driver
 mybatis:
-  mapper-locations: classpath*:/db/mybatis/mapper/*.xml
+  mapper-locations:
+    - classpath*:/db/mybatis/mapper/*.xml
+    - classpath*:/db/mybatis/mapper/extension/*.xml

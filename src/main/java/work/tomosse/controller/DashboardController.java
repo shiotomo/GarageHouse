@@ -23,7 +23,6 @@ public class DashboardController {
      */
     @GetMapping("dashboard")
     public ModelAndView index(final ModelAndView mav) {
-        final var accountList = accountService.selectAll();
         mav.setViewName("dashboard/index");
         return mav;
     }
