@@ -48,4 +48,8 @@ public class AccountRepository {
     public Account selectByName(final String name) {
         return accountExtensionMapper.selectByName(name);
     }
+
+    public int insert(final Account account) {
+        return accountMapper.insert(account);
+    }
 }

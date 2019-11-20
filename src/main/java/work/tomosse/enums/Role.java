@@ -1,19 +1,13 @@
 package work.tomosse.enums;
 
 public enum Role {
-    ADMIN(0, "ADMIN"),
-    WRITE(1, "USER");
+    ADMIN("ADMIN"),
+    USER("USER");
 
-    private int id;
     private String role;
 
-    private Role(final int id, final String role) {
-        this.id = id;
+    private Role(final String role) {
         this.role= role;
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public String getRole() {
