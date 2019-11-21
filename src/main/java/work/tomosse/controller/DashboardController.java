@@ -9,8 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import work.tomosse.service.AccountService;
 
-@RequestMapping("/")
 @Controller
+@RequestMapping("/dashboard")
 public class DashboardController {
 
     @Autowired
@@ -22,7 +22,7 @@ public class DashboardController {
      * @param mav
      * @return
      */
-    @GetMapping("dashboard")
+    @GetMapping
     public ModelAndView index(final ModelAndView mav) {
         mav.setViewName("dashboard/index");
         return mav;
@@ -34,7 +34,7 @@ public class DashboardController {
      * @param mav
      * @return
      */
-    @PostMapping("dashboard")
+    @PostMapping
     public String login() {
         return "redirect:/dashboard";
     }

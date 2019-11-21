@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import work.tomosse.api.request.AccountRequest;
 import work.tomosse.enums.Role;
 import work.tomosse.model.db.Account;
 import work.tomosse.repository.AccountRepository;
@@ -68,6 +69,20 @@ public class AccountService {
      */
     public int createUserAccount(final String name, final String password) {
         return createAccount(name, password, Role.USER.getRole());
+    }
+
+    /**
+     * accountを作成する
+     *
+     * @param accountRequest
+     * @return
+     */
+    public Account createAccount(final AccountRequest accountRequest) {
+        final var name = accountRequest.getName();
+        final var password = accountRequest.getPassword();
+        final var role = accountRequest.getRole();
+        final var id = createAccount(name, password, role);
+        return accountRepository.selectById((long) id);
     }
 
     /**

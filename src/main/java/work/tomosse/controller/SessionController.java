@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-@RequestMapping("/")
 @Controller
+@RequestMapping("/")
 public class SessionController {
     /**
      * Topページ用コントローラ
@@ -15,7 +15,7 @@ public class SessionController {
      * @return
      */
     @GetMapping
-    public ModelAndView top(ModelAndView mav) {
+    public ModelAndView top(final ModelAndView mav) {
         mav.setViewName("session/top");
         return mav;
     }
@@ -27,7 +27,7 @@ public class SessionController {
      * @return
      */
     @GetMapping("login")
-    public ModelAndView login(ModelAndView mav) {
+    public ModelAndView login(final ModelAndView mav) {
         mav.setViewName("session/login");
         return mav;
     }

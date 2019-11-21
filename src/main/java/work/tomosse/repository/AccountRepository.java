@@ -40,6 +40,16 @@ public class AccountRepository {
     }
 
     /**
+     * 指定したIDを持つaccountを取得する
+     *
+     * @param id
+     * @return
+     */
+    public Account selectById(final Long id) {
+        return accountMapper.selectByPrimaryKey(id);
+    }
+
+    /**
      * 指定したnameを持つaccountを取得する
      *
      * @param name
@@ -49,6 +59,12 @@ public class AccountRepository {
         return accountExtensionMapper.selectByName(name);
     }
 
+    /**
+     * accountを作成する
+     *
+     * @param account
+     * @return
+     */
     public int insert(final Account account) {
         return accountMapper.insert(account);
     }

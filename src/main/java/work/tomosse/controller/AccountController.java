@@ -8,8 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import work.tomosse.service.AccountService;
 
-@RequestMapping("/account")
 @Controller
+@RequestMapping("/account")
 public class AccountController {
 
     @Autowired
