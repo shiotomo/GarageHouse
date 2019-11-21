@@ -35,9 +35,7 @@ public class UserService implements UserDetailsService {
         final var grantList = new ArrayList<GrantedAuthority>();
         grantList.add(new SimpleGrantedAuthority(Role.ADMIN.getRole()));
         grantList.add(new SimpleGrantedAuthority(Role.USER.getRole()));
-        final var userDetails = new AccountDetails(username,
-                passwordEncoder.encode(account.getPassword()),
-                grantList);
+        final var userDetails = new AccountDetails(username, account.getPassword(), grantList);
         return userDetails;
     }
 

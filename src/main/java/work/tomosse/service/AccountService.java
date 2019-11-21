@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import work.tomosse.enums.Role;
@@ -17,8 +17,7 @@ public class AccountService {
     @Autowired
     AccountRepository accountRepository;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    private final static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     /**
      * accountを全件返却する
@@ -57,14 +56,7 @@ public class AccountService {
      * @param role
      */
     public int createAdminAccount(final String name, final String password) {
-        final String encordPassword = passwordEncoder.encode(password);
-        final var account = new Account();
-        account.setName(name);
-        account.setPassword(encordPassword);
-        account.setRole(Role.ADMIN.getRole());
-        account.setCreated_at(new Date());
-        account.setUpdated_at(new Date());
-        return accountRepository.insert(account);
+        return createAccount(name, password, Role.ADMIN.getRole());
     }
 
     /**
@@ -75,11 +67,23 @@ public class AccountService {
      * @param role
      */
     public int createUserAccount(final String name, final String password) {
+        return createAccount(name, password, Role.USER.getRole());
+    }
+
+    /**
+     * accountを作成する
+     *
+     * @param name
+     * @param password
+     * @param role
+     * @return
+     */
+    private int createAccount(final String name, final String password, final String role) {
         final String encordPassword = passwordEncoder.encode(password);
         final var account = new Account();
         account.setName(name);
         account.setPassword(encordPassword);
-        account.setRole(Role.USER.getRole());
+        account.setRole(role);
         account.setCreated_at(new Date());
         account.setUpdated_at(new Date());
         return accountRepository.insert(account);
