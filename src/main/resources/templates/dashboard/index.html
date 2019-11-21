@@ -3,13 +3,14 @@
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GarageHouse</title>
 </head>
 <body>
     <h1>Dashboard</h1>
     <form method="post" th:action="@{/logout}">
       <input type="submit" value="logout">
     </form>
+    <a th:href="@{/account}">Account List</a>
     <a th:href="@{/product}">Product List</a>
 </body>
 </html>
