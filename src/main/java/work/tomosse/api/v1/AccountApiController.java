@@ -2,6 +2,8 @@ package work.tomosse.api.v1;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import work.tomosse.api.request.AccountRequest;
+import work.tomosse.model.data.AccountResponse;
 import work.tomosse.model.db.Account;
 import work.tomosse.service.AccountService;
 
@@ -26,8 +29,8 @@ public class AccountApiController {
      * @return
      */
     @GetMapping
-    public List<Account> accountAllList() {
-        return accountService.selectAll();
+    public List<AccountResponse> accountAllList() {
+        return accountService.getAccountAllList();
     }
 
     /**
@@ -37,7 +40,7 @@ public class AccountApiController {
      * @return
      */
     @PostMapping
-    public Account createAccount(@RequestBody final AccountRequest accountRequest) {
+    public Account createAccount(@RequestBody @Valid final AccountRequest accountRequest) {
         return accountService.createAccount(accountRequest);
     }
 }

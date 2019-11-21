@@ -1,5 +1,6 @@
 package work.tomosse.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import work.tomosse.api.request.AccountRequest;
 import work.tomosse.enums.Role;
+import work.tomosse.model.data.AccountResponse;
 import work.tomosse.model.db.Account;
 import work.tomosse.repository.AccountRepository;
 
@@ -27,6 +29,20 @@ public class AccountService {
      */
     public List<Account> selectAll() {
         return accountRepository.selectAll();
+    }
+
+    /**
+     * accountを全返却する(API用)
+     *
+     * @return
+     */
+    public List<AccountResponse> getAccountAllList() {
+        final var accountList =  selectAll();
+        final var accountResponseList = new ArrayList<AccountResponse>();
+        accountList.forEach(account -> {
+            accountResponseList.add(new AccountResponse(account.getId(), account.getName(), account.getRole()));
+        });
+        return accountResponseList;
     }
 
     /**
