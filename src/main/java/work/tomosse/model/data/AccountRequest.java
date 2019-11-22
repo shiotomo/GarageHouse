@@ -1,4 +1,4 @@
-package work.tomosse.api.request;
+package work.tomosse.model.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

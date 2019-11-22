@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import work.tomosse.api.request.AccountRequest;
 import work.tomosse.enums.Role;
+import work.tomosse.model.data.AccountRequest;
 import work.tomosse.model.data.AccountResponse;
 import work.tomosse.model.db.Account;
 import work.tomosse.repository.AccountRepository;
