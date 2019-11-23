@@ -23,21 +23,12 @@ public class AccountService {
     private final static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     /**
-     * accountを全件返却する
-     *
-     * @return
-     */
-    public List<Account> selectAll() {
-        return accountRepository.selectAll();
-    }
-
-    /**
      * accountを全返却する(API用)
      *
      * @return
      */
     public List<AccountResponse> getAccountAllList() {
-        final var accountList =  selectAll();
+        final var accountList = accountRepository.selectAll();
         final var accountResponseList = new ArrayList<AccountResponse>();
         accountList.forEach(account -> {
             accountResponseList.add(new AccountResponse(account.getId(), account.getName(), account.getRole()));
