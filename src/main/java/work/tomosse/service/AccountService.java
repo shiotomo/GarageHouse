@@ -1,14 +1,13 @@
 package work.tomosse.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import work.tomosse.enums.Role;
+import work.tomosse.logic.AccountLogic;
 import work.tomosse.model.data.AccountRequest;
 import work.tomosse.model.data.AccountResponse;
 import work.tomosse.model.db.Account;
@@ -20,7 +19,8 @@ public class AccountService {
     @Autowired
     AccountRepository accountRepository;
 
-    private final static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    AccountLogic accountLogic;
 
     /**
      * accountを全返却する(API用)
@@ -64,7 +64,7 @@ public class AccountService {
      * @param role
      */
     public int createAdminAccount(final String name, final String password) {
-        return createAccount(name, password, Role.ADMIN.getRole());
+        return accountLogic.createAccount(name, password, Role.ADMIN.getRole());
     }
 
     /**
@@ -75,7 +75,7 @@ public class AccountService {
      * @param role
      */
     public int createUserAccount(final String name, final String password) {
-        return createAccount(name, password, Role.USER.getRole());
+        return accountLogic.createAccount(name, password, Role.USER.getRole());
     }
 
     /**
@@ -88,26 +88,8 @@ public class AccountService {
         final var name = accountRequest.getName();
         final var password = accountRequest.getPassword();
         final var role = accountRequest.getRole();
-        final var id = createAccount(name, password, role);
+        final var id = accountLogic.createAccount(name, password, role);
         return accountRepository.selectById((long) id);
     }
 
-    /**
-     * accountを作成する
-     *
-     * @param name
-     * @param password
-     * @param role
-     * @return
-     */
-    private int createAccount(final String name, final String password, final String role) {
-        final String encordPassword = passwordEncoder.encode(password);
-        final var account = new Account();
-        account.setName(name);
-        account.setPassword(encordPassword);
-        account.setRole(role);
-        account.setCreated_at(new Date());
-        account.setUpdated_at(new Date());
-        return accountRepository.insert(account);
-    }
 }
