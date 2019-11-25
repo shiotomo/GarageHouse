@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import work.tomosse.model.data.AccountRequest;
 import work.tomosse.model.data.AccountResponse;
 import work.tomosse.model.db.Account;
 import work.tomosse.service.AccountService;
 
+@Api(tags = "Account")
+@ApiModel(value = "Account", description = "Account REST API")
 @RestController
-@RequestMapping("/api/v1/account")
+@RequestMapping("/api/v1/accounts")
 public class AccountApiController {
 
     @Autowired
@@ -29,7 +33,7 @@ public class AccountApiController {
      * @return
      */
     @GetMapping
-    public List<AccountResponse> accountAllList() {
+    public List<AccountResponse> getAccountList() {
         return accountService.getAccountAllList();
     }
 
