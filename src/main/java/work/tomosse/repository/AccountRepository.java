@@ -68,4 +68,15 @@ public class AccountRepository {
     public int insert(final Account account) {
         return accountMapper.insert(account);
     }
+
+    /**
+     * accountを削除する
+     *
+     * @param account
+     * @return
+     * @return
+     */
+    public int deleteById(final Long id) {
+        return accountMapper.deleteByPrimaryKey(id);
+    }
 }

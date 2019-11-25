@@ -92,4 +92,17 @@ public class AccountService {
         return accountRepository.selectByName(name);
     }
 
+    /**
+     * accountを削除する
+     *
+     * @param id
+     * @return
+     */
+    public void deleteAccount(final Long id) {
+        final var account = accountRepository.selectById(id);
+        if (account == null) {
+            // 例外処理
+        }
+        accountRepository.deleteById(id);
+    }
 }

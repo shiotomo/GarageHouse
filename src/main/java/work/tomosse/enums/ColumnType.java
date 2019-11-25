@@ -1,5 +1,10 @@
 package work.tomosse.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum ColumnType {
     INTEGER("INTEGER"),
     STRING("STRING"),
@@ -8,12 +13,4 @@ public enum ColumnType {
     BOOLEAN("BOOLEAN");
 
     private String type;
-
-    private ColumnType(final String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return this.type;
-    }
 }
