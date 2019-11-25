@@ -26,18 +26,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(final WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/images/**", "/css/**", "javascript/**")
-            .antMatchers("/v2/api-docs",
+        web.ignoring().antMatchers(
+                "/images/**",
+                "/css/**",
+                "javascript/**",
+                "/v2/api-docs",
                 "/configuration/ui",
                 "/swagger-resources/**",
                 "/configuration/security",
                 "/swagger-ui.html",
-                "/webjars/**");
+                "/webjars/**"
+                );
     }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.csrf().ignoringAntMatchers("/api/v1/**")
+        .and()
+            .authorizeRequests()
             .antMatchers("/", "/api/v1/**").permitAll()
             .anyRequest().authenticated()
         .and()

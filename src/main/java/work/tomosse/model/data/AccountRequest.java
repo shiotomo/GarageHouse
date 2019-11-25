@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import work.tomosse.enums.Role;
 
 @Data
 public class AccountRequest {
-
     @ApiModelProperty(value = "name")
     @JsonProperty("name")
     private String name;
@@ -18,5 +18,5 @@ public class AccountRequest {
 
     @ApiModelProperty(value = "role")
     @JsonProperty("role")
-    private String role;
+    private Role role;
 }

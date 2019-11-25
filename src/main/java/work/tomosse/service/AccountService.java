@@ -87,9 +87,9 @@ public class AccountService {
     public Account createAccount(final AccountRequest accountRequest) {
         final var name = accountRequest.getName();
         final var password = accountRequest.getPassword();
-        final var role = accountRequest.getRole();
-        final var id = accountLogic.createAccount(name, password, role);
-        return accountRepository.selectById((long) id);
+        final var role = accountRequest.getRole().getRole();
+        accountLogic.createAccount(name, password, role);
+        return accountRepository.selectByName(name);
     }
 
 }
