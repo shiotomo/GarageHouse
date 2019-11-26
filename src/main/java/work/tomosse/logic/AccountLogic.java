@@ -35,5 +35,4 @@ public class AccountLogic {
         account.setUpdated_at(new Date());
         return accountRepository.insert(account);
     }
-
 }
