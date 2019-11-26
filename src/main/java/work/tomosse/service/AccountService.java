@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import work.tomosse.enums.ErrorCode;
 import work.tomosse.enums.Role;
+import work.tomosse.exception.GarageHouseNotFoundException;
 import work.tomosse.logic.AccountLogic;
 import work.tomosse.model.data.AccountRequest;
 import work.tomosse.model.data.AccountResponse;
@@ -23,7 +25,7 @@ public class AccountService {
     AccountLogic accountLogic;
 
     /**
-     * accountを全返却する(API用)
+     * account一覧を返却する
      *
      * @return
      */
@@ -52,30 +54,12 @@ public class AccountService {
     public void createAdmin() {
         final var accountList = accountRepository.selectAll();
         if (accountList.isEmpty()) {
-            createAdminAccount("admin", "admin");
+            final var accountRequest = new AccountRequest();
+            accountRequest.setName("admin");
+            accountRequest.setPassword("admin");
+            accountRequest.setRole(Role.ADMIN);
+            createAccount(accountRequest);
         }
-    }
-
-    /**
-     * ADMINのaccountを作成する
-     *
-     * @param name
-     * @param password
-     * @param role
-     */
-    public int createAdminAccount(final String name, final String password) {
-        return accountLogic.createAccount(name, password, Role.ADMIN.getRole());
-    }
-
-    /**
-     * USERのaccountを作成する
-     *
-     * @param name
-     * @param password
-     * @param role
-     */
-    public int createUserAccount(final String name, final String password) {
-        return accountLogic.createAccount(name, password, Role.USER.getRole());
     }
 
     /**
@@ -101,7 +85,7 @@ public class AccountService {
     public void deleteAccount(final Long id) {
         final var account = accountRepository.selectById(id);
         if (account == null) {
-            // 例外処理
+            throw new GarageHouseNotFoundException(ErrorCode.NotFoundResource);
         }
         accountRepository.deleteById(id);
     }
