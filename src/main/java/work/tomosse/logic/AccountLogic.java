@@ -26,7 +26,7 @@ public class AccountLogic {
      * @return
      */
     public int createAccount(final String name, final String password, final String role) {
-        final String encordPassword = passwordEncoder.encode(password);
+        final var encordPassword = passwordEncoder.encode(password);
         final var account = new Account();
         account.setName(name);
         account.setPassword(encordPassword);
