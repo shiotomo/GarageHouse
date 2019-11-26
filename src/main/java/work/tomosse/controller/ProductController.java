@@ -2,6 +2,7 @@ package work.tomosse.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,8 +28,8 @@ public class ProductController {
      * @param mav
      * @return
      */
-    @GetMapping("/:product_id")
-    public ModelAndView show(final ModelAndView mav) {
+    @GetMapping("/{id}")
+    public ModelAndView show(@PathVariable final Long id, final ModelAndView mav) {
         mav.setViewName("product/show");
         return mav;
     }

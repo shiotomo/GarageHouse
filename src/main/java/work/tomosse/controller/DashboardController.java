@@ -1,5 +1,7 @@
 package work.tomosse.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,8 @@ public class DashboardController {
      * @return
      */
     @GetMapping
-    public ModelAndView index(final ModelAndView mav) {
+    public ModelAndView index(final Principal principal, final ModelAndView mav) {
+        mav.addObject("account", accountService.selectByName(principal.getName()));
         mav.setViewName("dashboard/index");
         return mav;
     }
