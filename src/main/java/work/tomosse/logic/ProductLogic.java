@@ -21,7 +21,6 @@ public class ProductLogic {
         product.setUpdated_at(new Date());
         product.setCreated_by(1L);
         product.setUpdated_by(1L);
-        final var code = productRepository.insert(product);
         return productRepository.selectByName(name);
     }
 
