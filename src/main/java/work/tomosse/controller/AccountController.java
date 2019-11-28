@@ -23,7 +23,7 @@ public class AccountController {
      */
     @GetMapping
     public ModelAndView index(final ModelAndView mav) {
-        final var accountList = accountService.getAccountAllList();
+        final var accountList = accountService.getAccountList();
         mav.addObject("accountList", accountList);
         mav.setViewName("account/index");
         return mav;

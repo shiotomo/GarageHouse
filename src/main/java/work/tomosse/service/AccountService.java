@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import work.tomosse.enums.ErrorCode;
@@ -26,15 +25,12 @@ public class AccountService {
     @Autowired
     AccountLogic accountLogic;
 
-    @Autowired
-    MessageSource messageSource;
-
     /**
      * account一覧を返却する
      *
      * @return
      */
-    public List<AccountResponse> getAccountAllList() {
+    public List<AccountResponse> getAccountList() {
         final var accountList = accountRepository.selectAll();
         final var accountResponseList = new ArrayList<AccountResponse>();
         accountList.forEach(account -> {

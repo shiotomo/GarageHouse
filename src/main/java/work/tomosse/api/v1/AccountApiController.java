@@ -38,7 +38,7 @@ public class AccountApiController {
     @ApiOperation(value = "アカウント一覧取得", notes = "アカウントの一覧を返却します。")
     @GetMapping
     public List<AccountResponse> getAccountList() {
-        return accountService.getAccountAllList();
+        return accountService.getAccountList();
     }
 
     /**

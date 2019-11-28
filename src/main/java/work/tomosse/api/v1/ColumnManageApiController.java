@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModel;
 @Api(tags = "ColumnManage")
 @ApiModel(value = "ColumnManage", description = "ColumnManage REST API")
 @RestController
-@RequestMapping("/api/v1/products")
+@RequestMapping("/api/v1/column_manages")
 public class ColumnManageApiController {
 
 }
