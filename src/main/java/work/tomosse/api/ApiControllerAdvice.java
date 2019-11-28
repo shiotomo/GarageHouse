@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import work.tomosse.exception.GarageHouseBadRequestException;
 import work.tomosse.exception.GarageHouseNotFoundException;
 
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = "work.tomosse.api")
 public class ApiControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(GarageHouseBadRequestException.class)

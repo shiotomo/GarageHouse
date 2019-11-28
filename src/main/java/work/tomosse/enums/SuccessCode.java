@@ -5,11 +5,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ErrorCode {
-
-    // 4xx系
-    NotFoundResource(101, "Not found resource."),
-    ConflictAccount(102, "Conflict account name"),
+public enum SuccessCode {
+    SuccessDelete(10, "Success delete."),
     ;
 
     private int minorCode;

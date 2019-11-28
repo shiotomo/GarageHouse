@@ -1,4 +1,4 @@
-package work.tomosse.model.data;
+package work.tomosse.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

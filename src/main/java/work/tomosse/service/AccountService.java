@@ -2,17 +2,20 @@ package work.tomosse.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import work.tomosse.enums.ErrorCode;
 import work.tomosse.enums.Role;
+import work.tomosse.exception.GarageHouseBadRequestException;
 import work.tomosse.exception.GarageHouseNotFoundException;
 import work.tomosse.logic.AccountLogic;
-import work.tomosse.model.data.AccountRequest;
-import work.tomosse.model.data.AccountResponse;
 import work.tomosse.model.db.Account;
+import work.tomosse.model.request.AccountRequest;
+import work.tomosse.model.response.AccountResponse;
 import work.tomosse.repository.AccountRepository;
 
 @Service
@@ -23,6 +26,9 @@ public class AccountService {
 
     @Autowired
     AccountLogic accountLogic;
+
+    @Autowired
+    MessageSource messageSource;
 
     /**
      * account一覧を返却する
@@ -72,6 +78,11 @@ public class AccountService {
         final var name = accountRequest.getName();
         final var password = accountRequest.getPassword();
         final var role = accountRequest.getRole().getRole();
+        final var account = accountRepository.selectByName(name);
+        final var message = messageSource.getMessage("api.message.error.conflictAccount", null, Locale.JAPANESE);
+        if (account != null) {
+            throw new GarageHouseBadRequestException(ErrorCode.ConflictAccount);
+        }
         accountLogic.createAccount(name, password, role);
         return accountRepository.selectByName(name);
     }

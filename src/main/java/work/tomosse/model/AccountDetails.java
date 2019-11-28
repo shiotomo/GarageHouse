@@ -1,4 +1,4 @@
-package work.tomosse.model.data;
+package work.tomosse.model;
 
 import java.util.Collection;
 

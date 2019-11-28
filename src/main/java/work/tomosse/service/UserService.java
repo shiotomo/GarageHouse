@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import work.tomosse.enums.Role;
-import work.tomosse.model.data.AccountDetails;
+import work.tomosse.model.AccountDetails;
 import work.tomosse.repository.AccountRepository;
 
 @Service

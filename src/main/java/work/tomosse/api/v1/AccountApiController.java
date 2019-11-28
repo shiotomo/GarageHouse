@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
-import work.tomosse.model.data.AccountRequest;
-import work.tomosse.model.data.AccountResponse;
+import work.tomosse.enums.SuccessCode;
 import work.tomosse.model.db.Account;
+import work.tomosse.model.request.AccountRequest;
+import work.tomosse.model.response.AccountResponse;
+import work.tomosse.model.response.SuccessResponse;
 import work.tomosse.service.AccountService;
 
 @Api(tags = "Account")
@@ -64,8 +66,9 @@ public class AccountApiController {
      */
     @ApiOperation(value = "アカウント削除", notes = "アカウントを削除します。")
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAccount(@PathVariable final Long id) {
+    @ResponseStatus(HttpStatus.OK)
+    public SuccessResponse deleteAccount(@PathVariable final Long id) {
         accountService.deleteAccount(id);
+        return new SuccessResponse(SuccessCode.SuccessDelete);
     }
 }
