@@ -1,11 +1,19 @@
 package work.tomosse.exception;
 
-import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 import lombok.Getter;
 import work.tomosse.enums.ErrorCode;
 
 @Getter
-@AllArgsConstructor
+@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 public class GarageHouseBadRequestException extends RuntimeException {
     private final ErrorCode errorCode;
+    private final String[] args;
+
+    public GarageHouseBadRequestException(final ErrorCode errorCode, final String... args) {
+        this.errorCode = errorCode;
+        this.args = args;
+    }
 }

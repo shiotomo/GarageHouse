@@ -2,7 +2,6 @@ package work.tomosse.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -79,9 +78,8 @@ public class AccountService {
         final var password = accountRequest.getPassword();
         final var role = accountRequest.getRole().getRole();
         final var account = accountRepository.selectByName(name);
-        final var message = messageSource.getMessage("api.message.error.conflictAccount", null, Locale.JAPANESE);
         if (account != null) {
-            throw new GarageHouseBadRequestException(ErrorCode.ConflictAccount);
+            throw new GarageHouseBadRequestException(ErrorCode.ConflictAccount, name);
         }
         accountLogic.createAccount(name, password, role);
         return accountRepository.selectByName(name);
@@ -96,7 +94,7 @@ public class AccountService {
     public void deleteAccount(final Long id) {
         final var account = accountRepository.selectById(id);
         if (account == null) {
-            throw new GarageHouseNotFoundException(ErrorCode.NotFoundResource);
+            throw new GarageHouseNotFoundException(ErrorCode.ResourceNotFound);
         }
         accountRepository.deleteById(id);
     }

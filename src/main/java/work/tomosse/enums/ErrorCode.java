@@ -8,10 +8,10 @@ import lombok.Getter;
 public enum ErrorCode {
 
     // 4xx系
-    NotFoundResource(101, "Not found resource."),
-    ConflictAccount(102, "Conflict account name"),
+    ResourceNotFound(101, MessageProperty.ResourceNotFound),
+    ConflictAccount(102, MessageProperty.ConflictAccount),
     ;
 
     private int minorCode;
-    private String message;
+    private MessageProperty messageProperty;
 }

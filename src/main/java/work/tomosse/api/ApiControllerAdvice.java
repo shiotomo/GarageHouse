@@ -2,6 +2,7 @@ package work.tomosse.api;
 
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,23 +11,34 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import work.tomosse.exception.GarageHouseBadRequestException;
 import work.tomosse.exception.GarageHouseNotFoundException;
+import work.tomosse.util.MessageSourceUtils;
 
 @RestControllerAdvice(basePackages = "work.tomosse.api")
 public class ApiControllerAdvice extends ResponseEntityExceptionHandler {
+    @Autowired
+    MessageSourceUtils messageSource;
 
     @ExceptionHandler(GarageHouseBadRequestException.class)
     public ResponseEntity<Object> handler(final GarageHouseBadRequestException e) {
         final var body = new HashMap<String, Object>();
-        body.put("message",e.getErrorCode().getMessage());
-        body.put("code", e.getErrorCode().getMinorCode());
+        final var errorCode = e.getErrorCode();
+        final var args = e.getArgs();
+        final var message = messageSource.getMessage(errorCode.getMessageProperty().getMessage(), args);
+        final var code = errorCode.getMinorCode();
+        body.put("message", message);
+        body.put("code", code);
         return new ResponseEntity<Object>(body, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(GarageHouseNotFoundException.class)
     public ResponseEntity<Object> handler(final GarageHouseNotFoundException e) {
         final var body = new HashMap<String, Object>();
-        body.put("message",e.getErrorCode().getMessage());
-        body.put("code", e.getErrorCode().getMinorCode());
+        final var errorCode = e.getErrorCode();
+        final var args = e.getArgs();
+        final var message = messageSource.getMessage(errorCode.getMessageProperty().getMessage(), args);
+        final var code = errorCode.getMinorCode();
+        body.put("message", message);
+        body.put("code", code);
         return new ResponseEntity<Object>(body, HttpStatus.NOT_FOUND);
     }
 
