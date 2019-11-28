@@ -11,7 +11,8 @@ public enum MessageProperty {
 
     // Error系
     ResourceNotFound("api.message.error.resourceNotFound"),
-    ConflictAccount("api.message.error.conflictAccount")
+    ConflictAccount("api.message.error.conflictAccount"),
+    ConflictProduct("api.message.error.conflictProduct"),
     ;
 
     private String message;

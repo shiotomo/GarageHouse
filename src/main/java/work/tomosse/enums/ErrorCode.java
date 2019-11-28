@@ -10,6 +10,7 @@ public enum ErrorCode {
     // 4xx系
     ResourceNotFound(101, MessageProperty.ResourceNotFound),
     ConflictAccount(102, MessageProperty.ConflictAccount),
+    ConflictProduct(103, MessageProperty.ConflictProduct),
     ;
 
     private int minorCode;
