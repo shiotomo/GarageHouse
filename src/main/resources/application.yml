@@ -5,7 +5,8 @@ spring:
     password:
     driverClassName: com.mysql.cj.jdbc.Driver
   messages:
-    basename: messages
+    basename: i18n/messages
+    encoding: UTF-8
   security:
     secret-key:
 mybatis:
