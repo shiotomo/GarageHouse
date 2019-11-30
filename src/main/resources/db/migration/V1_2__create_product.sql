@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `product` (
     `id` BIGINT AUTO_INCREMENT,
-    `name` text NOT NULL,
+    `name` VARCHAR(10000) NOT NULL,
     `created_by` BIGINT NOT NULL,
     `updated_by` BIGINT NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

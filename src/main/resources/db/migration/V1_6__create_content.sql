@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `content` (
     `id` BIGINT AUTO_INCREMENT,
     `column_manage_id` BIGINT NOT NULL,
     `content_data_id` BIGINT NOT NULL,
-    `body` TEXT,
+    `body` VARCHAR(10000),
     `created_by` BIGINT NOT NULL,
     `updated_by` BIGINT NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
