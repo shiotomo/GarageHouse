@@ -42,7 +42,9 @@ public class ProductService {
         if (product != null) {
             throw new GarageHouseBadRequestException(ErrorCode.ConflictProduct, name);
         }
-        return productLogic.createProduct(name);
+        final var createProduct = productLogic.createProduct(name);
+        // TODO accountと紐付ける処理を実装する
+        return createProduct;
     }
 
     /**
@@ -59,6 +61,19 @@ public class ProductService {
         }
         productLogic.updateProduct(product, productRequest);
         return productRepository.selectById(id);
+    }
+
+    /**
+     * productを削除する
+     *
+     * @param id
+     */
+    public void deleteProduct(final Long id) {
+        final var product = productRepository.selectById(id);
+        if (product == null) {
+            throw new GarageHouseBadRequestException(ErrorCode.ResourceNotFound);
+        }
+        productRepository.deleteById(id);
     }
 
 }

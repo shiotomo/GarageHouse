@@ -78,4 +78,13 @@ public class ProductRepository {
     public int update(final Product product) {
         return productMapper.updateByPrimaryKey(product);
     }
+
+    /**
+     * productを削除する
+     *
+     * @param id
+     */
+    public void deleteById(final Long id) {
+        productMapper.deleteByPrimaryKey(id);
+    }
 }

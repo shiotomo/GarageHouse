@@ -3,6 +3,7 @@ package work.tomosse.api.v1;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
+import work.tomosse.enums.SuccessCode;
 import work.tomosse.model.db.Product;
 import work.tomosse.model.request.ProductRequest;
+import work.tomosse.model.response.SuccessResponse;
 import work.tomosse.service.ProductService;
 
 @Api(tags = "Product")
@@ -44,4 +47,12 @@ public class ProductApiController {
     public Product updateProduct(@PathVariable final Long id, @RequestBody final ProductRequest productRequest) {
         return productService.updateProduct(id, productRequest);
     }
+
+    @ApiOperation(value = "プロダクト削除", notes = "プロダクトを削除します。")
+    @DeleteMapping("/{id}")
+    public SuccessResponse deleteProduct(@PathVariable final Long id) {
+        productService.deleteProduct(id);
+        return new SuccessResponse(SuccessCode.SuccessDelete);
+    }
+
 }
