@@ -42,8 +42,23 @@ public class ProductService {
         if (product != null) {
             throw new GarageHouseBadRequestException(ErrorCode.ConflictProduct, name);
         }
-        productLogic.createProduct(name);
-        return productRepository.selectByName(name);
+        return productLogic.createProduct(name);
+    }
+
+    /**
+     * productを更新する
+     *
+     * @param id
+     * @param productRequest
+     * @return
+     */
+    public Product updateProduct(final Long id, final ProductRequest productRequest) {
+        final var product = productRepository.selectById(id);
+        if (product == null) {
+            throw new GarageHouseBadRequestException(ErrorCode.ResourceNotFound);
+        }
+        productLogic.updateProduct(product, productRequest);
+        return productRepository.selectById(id);
     }
 
 }

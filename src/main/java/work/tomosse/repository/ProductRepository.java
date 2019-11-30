@@ -68,4 +68,14 @@ public class ProductRepository {
         return productMapper.insert(product);
     }
 
+    /**
+     * productを更新する
+     *
+     * @param id
+     * @param product
+     * @return
+     */
+    public int update(final Product product) {
+        return productMapper.updateByPrimaryKey(product);
+    }
 }
