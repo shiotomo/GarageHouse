@@ -5,6 +5,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import work.tomosse.enums.ErrorCode;
+import work.tomosse.exception.GarageHouseBadRequestException;
 import work.tomosse.model.db.Product;
 import work.tomosse.model.request.ProductRequest;
 import work.tomosse.repository.ProductRepository;
@@ -22,6 +24,10 @@ public class ProductLogic {
      * @return
      */
     public Product createProduct(final String name) {
+        final var productRecord = productRepository.selectByName(name);
+        if (productRecord != null) {
+            throw new GarageHouseBadRequestException(ErrorCode.ConflictProduct, name);
+        }
         final var product = new Product();
         product.setName(name);
         product.setCreated_at(new Date());
