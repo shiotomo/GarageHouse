@@ -4,7 +4,7 @@ plugins {
   id 'java'
 }
 
-group = 'work.tomosse'
+group = 'work.tomosse.garage_house'
 version = '0.0.1'
 sourceCompatibility = '11'
 

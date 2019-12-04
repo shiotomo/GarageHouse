@@ -12,7 +12,7 @@
     </jdbcConnection>
 
     <!-- SELECT 結果等を格納するドメインモデルを生成する設定 -->
-    <javaModelGenerator targetPackage="work.tomosse.model.db" targetProject="GarageHouse/src/main/java">
+    <javaModelGenerator targetPackage="work.tomosse.garage_house.model.db" targetProject="GarageHouse/src/main/java">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
@@ -22,7 +22,7 @@
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
     <!-- マッパークラスを生成する設定 -->
-    <javaClientGenerator type="XMLMAPPER" targetPackage="work.tomosse.mapper" targetProject="GarageHouse/src/main/java">
+    <javaClientGenerator type="XMLMAPPER" targetPackage="work.tomosse.garage_house.mapper" targetProject="GarageHouse/src/main/java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 
