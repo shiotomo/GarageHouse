@@ -4,4 +4,10 @@
   <select id="selectByName" parameterType="java.lang.String" resultType="work.tomosse.garage_house.model.db.Product">
     SELECT id, name, created_by, updated_by, created_at, updated_at FROM product WHERE name = #{name}
   </select>
+  <select id="selectByAccount" parameterType="java.lang.Long" resultType="work.tomosse.garage_house.model.db.Product">
+  SELECT product.id, product.name, product.created_by, product.updated_by, product.created_at, product.updated_at
+     FROM account_product JOIN product
+     ON account_product.product_id = product.id
+     WHERE account_product.account_id = #{accountId};
+  </select>
 </mapper>

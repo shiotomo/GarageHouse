@@ -28,7 +28,8 @@ public class ProductController {
      * @return
      */
     @GetMapping
-    public ModelAndView index(final ModelAndView mav) {
+    public ModelAndView index(final Principal principal, final ModelAndView mav) {
+        mav.addObject("productList", productService.getProductListByAccount(principal));
         mav.setViewName("product/index");
         return mav;
     }
@@ -41,6 +42,7 @@ public class ProductController {
      */
     @GetMapping("/{id}")
     public ModelAndView show(@PathVariable final Long id, final ModelAndView mav) {
+        mav.addObject("product", productService.getProductById(id));
         mav.setViewName("product/show");
         return mav;
     }
@@ -66,7 +68,7 @@ public class ProductController {
      */
     @PostMapping("/create")
     public String create(final Principal principal, @ModelAttribute final Product product) {
-        productService.createProduct(principal, product);
-        return "redirect:/product/";
+        final var createProduct = productService.createProduct(principal, product);
+        return "redirect:/product/" + createProduct.getId();
     }
 }

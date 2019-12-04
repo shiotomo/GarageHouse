@@ -87,4 +87,14 @@ public class ProductRepository {
     public void deleteById(final Long id) {
         productMapper.deleteByPrimaryKey(id);
     }
+
+    /**
+     * account_productに紐付いたproductを取得する
+     *
+     * @param accountProductList
+     * @return
+     */
+    public List<Product> selectByAccount(final Long accountId) {
+        return productExtensionMapper.selectByAccount(accountId);
+    }
 }

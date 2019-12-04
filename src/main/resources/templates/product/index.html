@@ -9,5 +9,24 @@
   <h1>Product List</h1>
   <a th:href="@{/dashboard}">Dashboard</a>
   <a th:href="@{/product/new}">Create product</a>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>name</th>
+      <th>created_by</th>
+      <th>updated_by</th>
+      <th>created_at</th>
+      <th>updated_at</th>
+    </tr>
+    <tr th:each="product: ${productList}">
+      <td th:text="${product.getId()}"></td>
+      <td th:text="${product.getName()}"></td>
+      <td th:text="${product.getCreated_by()}"></td>
+      <td th:text="${product.getUpdated_by()}"></td>
+      <td th:text="${product.getCreated_at()}"></td>
+      <td th:text="${product.getUpdated_at()}"></td>
+      <td><a th:href="@{'/product/' + ${product.getId()}}">detail</a></td>
+    </tr>
+  </table>
 </body>
 </html>

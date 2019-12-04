@@ -17,17 +17,38 @@ public class AccountProductLogic {
     @Autowired
     AccountProductRepository accountProductRepository;
 
-    public int createAccountProduct(final Account account, final Product product) {
+    /**
+     * account_productを作成する
+     *
+     * @param account
+     * @param product
+     * @param permission
+     * @return
+     */
+    public int createAccountProduct(final Account account, final Product product, final Permission permission) {
         final var accountId = account.getId();
         final var productId = product.getId();
+        final var accountProduct = getAccountProduct(accountId, productId, permission);
+        return accountProductRepository.insert(accountProduct);
+    }
+
+    /**
+     * 作成するaccount_productを返却する
+     *
+     * @param accountId
+     * @param productId
+     * @param permission
+     * @return
+     */
+    private AccountProduct getAccountProduct(final Long accountId, final Long productId, final Permission permission) {
         final var accountProduct = new AccountProduct();
         accountProduct.setAccount_id(accountId);
         accountProduct.setProduct_id(productId);
-        accountProduct.setPermission(Permission.WRITE_AND_READ.getId());
+        accountProduct.setPermission(permission.getId());
         accountProduct.setCreated_at(new Date());
         accountProduct.setUpdated_at(new Date());
         accountProduct.setCreated_by(accountId);
         accountProduct.setUpdated_by(accountId);
-        return accountProductRepository.insert(accountProduct);
+        return accountProduct;
     }
 }

@@ -23,18 +23,16 @@ public class ProductLogic {
      * @param name
      * @return
      */
-    public Product createProduct(final String name) {
+    public Product createProduct(final String name, final Long accountId) {
         final var productRecord = productRepository.selectByName(name);
-        if (productRecord != null) {
-            throw new GarageHouseBadRequestException(ErrorCode.ConflictProduct, name);
-        }
+        ensureExistProduct(productRecord);
         final var product = new Product();
         product.setName(name);
         product.setCreated_at(new Date());
         product.setUpdated_at(new Date());
         // TODO accountのidを入れれるようにする
-        product.setCreated_by(1L);
-        product.setUpdated_by(1L);
+        product.setCreated_by(accountId);
+        product.setUpdated_by(accountId);
         productRepository.insert(product);
         return productRepository.selectByName(name);
     }
@@ -54,4 +52,25 @@ public class ProductLogic {
         productRepository.update(product);
     }
 
+    /**
+     * productの存在確認を行う 存在しなければ400エラー
+     *
+     * @param product
+     */
+    public void ensureNotExistProduct(final Product product) {
+        if (product == null) {
+            throw new GarageHouseBadRequestException(ErrorCode.ResourceNotFound);
+        }
+    }
+
+    /**
+     * productの存在確認を行う 存在すれば400エラー
+     *
+     * @param product
+     */
+    public void ensureExistProduct(final Product product) {
+        if (product != null) {
+            throw new GarageHouseBadRequestException(ErrorCode.ResourceNotFound);
+        }
+    }
 }

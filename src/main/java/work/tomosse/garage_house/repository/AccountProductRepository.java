@@ -21,5 +21,4 @@ public class AccountProductRepository {
     public int insert(final AccountProduct accountProduct) {
         return accountProductMapper.insert(accountProduct);
     }
-
 }
