@@ -8,5 +8,10 @@
 <body>
   <h1>Create product</h1>
   <a th:href="@{/product}">Product List</a>
+  <form th:action="@{/product/create}" method="POST">
+    <label>Product name</label>
+    <input type="text" name="name">
+    <input type="submit" value="登録">
+  </form>
 </body>
 </html>

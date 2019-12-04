@@ -58,7 +58,7 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute final Principal principal, @ModelAttribute final Product product) {
+    public String create(final Principal principal, @ModelAttribute final Product product) {
         productService.createProduct(principal, product);
         return "redirect:/product/";
     }
