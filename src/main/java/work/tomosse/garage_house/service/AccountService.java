@@ -6,9 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import work.tomosse.garage_house.enums.ErrorCode;
 import work.tomosse.garage_house.enums.Role;
-import work.tomosse.garage_house.exception.GarageHouseNotFoundException;
 import work.tomosse.garage_house.logic.AccountLogic;
 import work.tomosse.garage_house.model.db.Account;
 import work.tomosse.garage_house.model.request.AccountRequest;
@@ -73,7 +71,7 @@ public class AccountService {
         final var password = accountRequest.getPassword();
         final var role = accountRequest.getRole().getRole();
         final var account = accountRepository.selectByName(name);
-        ensureExistAccount(account);
+        accountLogic.ensureNotExistAccount(account);
         accountLogic.createAccount(name, password, role);
         return accountRepository.selectByName(name);
     }
@@ -86,18 +84,7 @@ public class AccountService {
      */
     public void deleteAccount(final Long id) {
         final var account = accountRepository.selectById(id);
-        ensureExistAccount(account);
+        accountLogic.ensureExistAccount(account);
         accountRepository.deleteById(id);
-    }
-
-    /**
-     * accountの存在確認を行う 存在しなければ400エラー
-     *
-     * @param account
-     */
-    private void ensureExistAccount(final Account account) {
-        if (account == null) {
-            throw new GarageHouseNotFoundException(ErrorCode.ResourceNotFound);
-        }
     }
 }

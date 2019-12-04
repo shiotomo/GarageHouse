@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import work.tomosse.garage_house.enums.ErrorCode;
+import work.tomosse.garage_house.exception.GarageHouseNotFoundException;
 import work.tomosse.garage_house.model.db.Account;
 import work.tomosse.garage_house.repository.AccountRepository;
 
@@ -34,5 +36,27 @@ public class AccountLogic {
         account.setCreated_at(new Date());
         account.setUpdated_at(new Date());
         return accountRepository.insert(account);
+    }
+
+    /**
+     * accountの存在確認を行う 存在すれば400エラー
+     *
+     * @param account
+     */
+    public void ensureExistAccount(final Account account) {
+        if (account != null) {
+            throw new GarageHouseNotFoundException(ErrorCode.ResourceNotFound);
+        }
+    }
+
+    /**
+     * accountの存在確認を行う 存在しなければ400エラー
+     *
+     * @param account
+     */
+    public void ensureNotExistAccount(final Account account) {
+        if (account != null) {
+            throw new GarageHouseNotFoundException(ErrorCode.ResourceNotFound);
+        }
     }
 }
