@@ -13,3 +13,5 @@ mybatis:
   mapper-locations:
     - classpath*:/db/mybatis/mapper/*.xml
     - classpath*:/db/mybatis/mapper/extension/*.xml
+  configuration:
+    map-underscore-to-camel-case: true

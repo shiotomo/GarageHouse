@@ -30,7 +30,6 @@ public class ProductLogic {
         product.setName(name);
         product.setCreatedAt(new Date());
         product.setUpdatedAt(new Date());
-        // TODO accountのidを入れれるようにする
         product.setCreatedBy(accountId);
         product.setUpdatedBy(accountId);
         productRepository.insert(product);
