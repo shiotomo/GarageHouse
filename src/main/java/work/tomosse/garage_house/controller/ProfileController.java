@@ -29,7 +29,7 @@ public class ProfileController {
     }
 
     /**
-     * プロフィール編集用
+     * プロフィール編集ページ用
      *
      * @param id
      * @param mav
@@ -42,7 +42,14 @@ public class ProfileController {
         return mav;
     }
 
-    @PatchMapping("update/{id}")
+    /**
+     * プロフィール更新
+     *
+     * @param id
+     * @param accountRequest
+     * @return
+     */
+    @PatchMapping("/update/{id}")
     public String update(@PathVariable final Long id, @RequestBody final AccountRequest accountRequest) {
         return null;
     }

@@ -27,24 +27,13 @@
     </javaClientGenerator>
 
     <!-- コードを生成するテーブルを指定 -->
-    <table tableName="account">
-      <property name="useActualColumnNames" value="true" />
-    </table>
-    <table tableName="account_product">
-      <property name="useActualColumnNames" value="true" />
-    </table>
-    <table tableName="column_manage">
-      <property name="useActualColumnNames" value="true" />
-    </table>
-    <table tableName="content">
-      <property name="useActualColumnNames" value="true" />
-    </table>
-    <table tableName="content_data">
-      <property name="useActualColumnNames" value="true" />
-    </table>
-    <table tableName="product">
-      <property name="useActualColumnNames" value="true" />
-    </table>
+    <table tableName="account"></table>
+    <table tableName="account_product"></table>
+    <table tableName="column_manage"></table>
+    <table tableName="column_validation"></table>
+    <table tableName="content"></table>
+    <table tableName="content_data"></table>
+    <table tableName="product"></table>
 
   </context>
 </generatorConfiguration>

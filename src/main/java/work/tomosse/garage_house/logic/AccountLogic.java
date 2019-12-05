@@ -33,8 +33,8 @@ public class AccountLogic {
         account.setName(name);
         account.setPassword(encordPassword);
         account.setRole(role);
-        account.setCreated_at(new Date());
-        account.setUpdated_at(new Date());
+        account.setCreatedAt(new Date());
+        account.setUpdatedAt(new Date());
         return accountRepository.insert(account);
     }
 

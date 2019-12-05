@@ -28,11 +28,11 @@ public class ProductLogic {
         ensureExistProduct(productRecord);
         final var product = new Product();
         product.setName(name);
-        product.setCreated_at(new Date());
-        product.setUpdated_at(new Date());
+        product.setCreatedAt(new Date());
+        product.setUpdatedAt(new Date());
         // TODO accountのidを入れれるようにする
-        product.setCreated_by(accountId);
-        product.setUpdated_by(accountId);
+        product.setCreatedBy(accountId);
+        product.setUpdatedBy(accountId);
         productRepository.insert(product);
         return productRepository.selectByName(name);
     }
@@ -47,8 +47,8 @@ public class ProductLogic {
     public void updateProduct(final Product product, final ProductRequest productRequest) {
         product.setName(productRequest.getName());
         // TODO accountのidを入れれるようにする
-        product.setUpdated_at(new Date());
-        product.setUpdated_by(1L);
+        product.setUpdatedAt(new Date());
+        product.setUpdatedBy(1L);
         productRepository.update(product);
     }
 

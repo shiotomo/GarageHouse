@@ -42,13 +42,13 @@ public class AccountProductLogic {
      */
     private AccountProduct getAccountProduct(final Long accountId, final Long productId, final Permission permission) {
         final var accountProduct = new AccountProduct();
-        accountProduct.setAccount_id(accountId);
-        accountProduct.setProduct_id(productId);
+        accountProduct.setAccountId(accountId);
+        accountProduct.setProductId(productId);
         accountProduct.setPermission(permission.getId());
-        accountProduct.setCreated_at(new Date());
-        accountProduct.setUpdated_at(new Date());
-        accountProduct.setCreated_by(accountId);
-        accountProduct.setUpdated_by(accountId);
+        accountProduct.setCreatedAt(new Date());
+        accountProduct.setUpdatedAt(new Date());
+        accountProduct.setCreatedBy(accountId);
+        accountProduct.setUpdatedBy(accountId);
         return accountProduct;
     }
 }
