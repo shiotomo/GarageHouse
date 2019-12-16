@@ -45,7 +45,7 @@ public class AccountLogic {
      */
     public void ensureExistAccount(final Account account) {
         if (account != null) {
-            throw new GarageHouseNotFoundException(ErrorCode.ResourceNotFound);
+            throw new GarageHouseNotFoundException(ErrorCode.ConflictAccount, account.getName());
         }
     }
 
@@ -55,7 +55,7 @@ public class AccountLogic {
      * @param account
      */
     public void ensureNotExistAccount(final Account account) {
-        if (account != null) {
+        if (account == null) {
             throw new GarageHouseNotFoundException(ErrorCode.ResourceNotFound);
         }
     }

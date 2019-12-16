@@ -2,6 +2,7 @@ package work.tomosse.garage_house.controller;
 
 import java.security.Principal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,10 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import work.tomosse.garage_house.model.db.ColumnManage;
+import work.tomosse.garage_house.service.ColumnManageService;
 
 @Controller
 @RequestMapping("product/{productId}/column_manage")
 public class ColumnManageController {
+
+    @Autowired
+    ColumnManageService columnManageService;
 
     /**
      * column_manageを追加するページを表示する
@@ -29,9 +34,17 @@ public class ColumnManageController {
         return mav;
     }
 
+    /**
+     * column_manageを追加する
+     *
+     * @param principal
+     * @param productId
+     * @param columnManage
+     * @return
+     */
     @PostMapping("/create")
-    public String create(final Principal principal, final Long productId, final ColumnManage columnManage) {
-        return "redirect/product/";
+    public String create(final Principal principal, @PathVariable final Long productId, final ColumnManage columnManage) {
+        columnManageService.create(principal, productId, columnManage);
+        return "redirect:/product/" + productId;
     }
-
 }

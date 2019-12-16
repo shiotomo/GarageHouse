@@ -52,23 +52,23 @@ public class ProductLogic {
     }
 
     /**
-     * productの存在確認を行う 存在しなければ400エラー
-     *
-     * @param product
-     */
-    public void ensureNotExistProduct(final Product product) {
-        if (product == null) {
-            throw new GarageHouseBadRequestException(ErrorCode.ResourceNotFound);
-        }
-    }
-
-    /**
      * productの存在確認を行う 存在すれば400エラー
      *
      * @param product
      */
     public void ensureExistProduct(final Product product) {
         if (product != null) {
+            throw new GarageHouseBadRequestException(ErrorCode.ConflictProduct, product.getName());
+        }
+    }
+
+    /**
+     * productの存在確認を行う 存在しなければ400エラー
+     *
+     * @param product
+     */
+    public void ensureNotExistProduct(final Product product) {
+        if (product == null) {
             throw new GarageHouseBadRequestException(ErrorCode.ResourceNotFound);
         }
     }

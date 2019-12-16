@@ -13,6 +13,7 @@ public enum MessageProperty {
     ResourceNotFound("api.message.error.resourceNotFound"),
     ConflictAccount("api.message.error.conflictAccount"),
     ConflictProduct("api.message.error.conflictProduct"),
+    ConflictColumnManage("api.message.error.conflictColumnManage"),
     ;
 
     private String message;

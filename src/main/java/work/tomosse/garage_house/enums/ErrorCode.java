@@ -11,6 +11,7 @@ public enum ErrorCode {
     ResourceNotFound(101, MessageProperty.ResourceNotFound),
     ConflictAccount(102, MessageProperty.ConflictAccount),
     ConflictProduct(103, MessageProperty.ConflictProduct),
+    ConflictColumnManage(104, MessageProperty.ConflictColumnManage),
     ;
 
     private int minorCode;
