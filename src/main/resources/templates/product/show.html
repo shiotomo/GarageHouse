@@ -9,7 +9,8 @@
   <h1>Product</h1>
   <a th:href="@{/dashboard}">Dashboard</a>
   <a th:href="@{/product}">Product List</a>
-  <a th:href="@{'/product/' + ${product.getId()} + '/column_manage/new'}">Add Column</a>
+  <a th:href="@{'/product/' + ${product.getId()} + '/column_manage/new'}">Add column</a>
+  <a th:href="@{'/product/' + ${product.getId()} + '/content_data/new'}">Add content data</a>
   <br />
   <label>Product Info</label>
   <table>
