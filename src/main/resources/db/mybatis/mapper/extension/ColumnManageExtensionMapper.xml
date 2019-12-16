@@ -4,4 +4,7 @@
   <select id="selectByNameAndProductId" parameterType="work.tomosse.garage_house.model.parameter.ColumnManageParameter" resultType="work.tomosse.garage_house.model.db.ColumnManage">
     SELECT id, product_id, name, column_type,created_by, updated_by, created_at, updated_at FROM column_manage WHERE name = #{name} AND product_id = #{productId}
   </select>
+  <select id="selectByProductId" parameterType="java.lang.Long" resultType="work.tomosse.garage_house.model.db.ColumnManage">
+    SELECT id, product_id, name, column_type,created_by, updated_by, created_at, updated_at FROM column_manage WHERE product_id = #{productId}
+  </select>
 </mapper>

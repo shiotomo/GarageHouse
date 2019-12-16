@@ -27,6 +27,16 @@ public class ColumnManageService {
     ColumnManageRepository columnManageRepository;
 
     /**
+     * productに紐付いたcolumn_manageを取得する
+     *
+     * @param productId
+     * @return
+     */
+    public Object selectByProductId(final Long productId) {
+        return columnManageRepository.selectByProductId(productId);
+    }
+
+    /**
      * column_manageを作成する
      *
      * @param principal

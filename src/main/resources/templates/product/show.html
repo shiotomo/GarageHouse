@@ -10,6 +10,7 @@
   <a th:href="@{/dashboard}">Dashboard</a>
   <a th:href="@{/product}">Product List</a>
   <a th:href="@{'/product/' + ${product.getId()} + '/column_manage/new'}">Add Column</a>
+  <label>Product</label>
   <table>
     <tr>
       <th>ID</th>
@@ -26,6 +27,28 @@
       <td th:text="${product.getUpdatedBy()}"></td>
       <td th:text="${product.getCreatedAt()}"></td>
       <td th:text="${product.getUpdatedAt()}"></td>
+    </tr>
+  </table>
+  <br />
+  <label>Column List</label>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>name</th>
+      <th>column_type</th>
+      <th>created_by</th>
+      <th>updated_by</th>
+      <th>created_at</th>
+      <th>updated_at</th>
+    </tr>
+    <tr th:each="column: ${columnManageList}">
+      <td th:text="${column.getId()}"></td>
+      <td th:text="${column.getName()}"></td>
+      <td th:text="${column.getColumnType()}"></td>
+      <td th:text="${column.getCreatedBy()}"></td>
+      <td th:text="${column.getUpdatedBy()}"></td>
+      <td th:text="${column.getCreatedAt()}"></td>
+      <td th:text="${column.getUpdatedAt()}"></td>
     </tr>
   </table>
 </body>
