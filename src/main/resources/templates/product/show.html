@@ -57,9 +57,10 @@
   </table>
   <label>ContentData List</label>
   <table>
-    <tr>
-      <th:block th:each="column: ${columnManageList}">
-        <th th:text="${column.getName()}"></th>
+    <tr th:each="contents : ${contentMap}">
+      <td th:text="${contents.key}"></td>
+      <th:block th:each="content: ${contents.value}">
+        <td th:text="${content.key} + ': ' +  ${content.value}"></td>
       </th:block>
     </tr>
   </table>

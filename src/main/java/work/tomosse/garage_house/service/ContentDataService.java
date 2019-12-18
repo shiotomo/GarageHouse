@@ -16,6 +16,7 @@ import work.tomosse.garage_house.repository.AccountRepository;
 import work.tomosse.garage_house.repository.ColumnManageRepository;
 import work.tomosse.garage_house.repository.ContentDataRepository;
 import work.tomosse.garage_house.repository.ContentRepository;
+import work.tomosse.garage_house.repository.ProductRepository;
 import work.tomosse.garage_house.util.ColumnTypeUtils;
 
 @Service
@@ -41,6 +42,9 @@ public class ContentDataService {
 
     @Autowired
     ContentRepository contentRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     /**
      * 指定したproductIdに紐付いたcontent_dataを取得する
@@ -86,5 +90,33 @@ public class ContentDataService {
             final var content = contentLogic.createContentModel(account.getId(), contentData.getId(), columnManageId, value);
             contentRepository.insert(content);
         });
+    }
+
+    /**
+     * productに紐付いているcontentMapを返却する
+     * Map<contentDataId, Map<columnName, content.Body>>の構造が返却される
+     *
+     * @param productId
+     * @return
+     */
+    public Map<Long, Map<String, Object>> getContentMap(final Long productId) {
+        final var columnManageList = columnManageRepository.selectByProductId(productId);
+        final var contentDataList = contentDataRepository.selectByProductId(productId);
+        final var contentMap = new HashMap<Long, Map<String, Object>>();
+        final var columnNameMap = new HashMap<Long, String>();
+        columnManageList.forEach(columnManage -> {
+            columnNameMap.put(columnManage.getId(), columnManage.getName());
+        });
+        contentDataList.forEach(contentData -> {
+            final var contentDataId = contentData.getId();
+            if (!contentMap.containsKey(contentDataId)) {
+                contentMap.put(contentDataId, new HashMap<String, Object>());
+            }
+            final var contentList = contentRepository.selectByContentDataId(contentDataId);
+            contentList.forEach(content -> {
+                contentMap.get(contentDataId).put(columnNameMap.get(content.getColumnManageId()), content.getBody());
+            });
+        });
+        return contentMap;
     }
 }

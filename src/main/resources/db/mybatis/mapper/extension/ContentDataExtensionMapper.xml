@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="work.tomosse.garage_house.mapper.extension.ContentDataExtensionMapper">
-  <select id="selectByProdcutId" parameterType="java.lang.Long" resultType="work.tomosse.garage_house.model.db.ContentData">
-    SELECT id, product_id, created_by, updated_by, created_at, updated_at FROM product WHERE product_id = #{productId}
-  </select>
-  <select id="selectByProdcutIdAndContentDataId" parameterType="java.lang.Long" resultType="work.tomosse.garage_house.model.db.ContentData">
+  <select id="selectByProductId" parameterType="java.lang.Long" resultType="work.tomosse.garage_house.model.db.ContentData">
+    SELECT id, product_id, created_by, updated_by, created_at, updated_at FROM content_data WHERE product_id = #{productId}
   </select>
   <insert id="insertReturnId" parameterType="work.tomosse.garage_house.model.db.ContentData">
     insert into content_data (id, product_id, created_by,

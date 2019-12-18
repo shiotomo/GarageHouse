@@ -1,5 +1,7 @@
 package work.tomosse.garage_house.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,16 @@ public class ContentDataRepository {
 
     @Autowired
     ContentDataExtensionMapper contentDataExtensionMapper;
+
+    /**
+     * productIdに紐付いたcontent_dataのリストを取得する
+     *
+     * @param productId
+     * @return
+     */
+    public List<ContentData> selectByProductId(final Long productId) {
+        return contentDataExtensionMapper.selectByProductId(productId);
+    }
 
     /**
      * content_dataを作成する
@@ -35,5 +47,4 @@ public class ContentDataRepository {
     public Long insertReturnId(final ContentData contentData) {
         return contentDataExtensionMapper.insertReturnId(contentData);
     }
-
 }

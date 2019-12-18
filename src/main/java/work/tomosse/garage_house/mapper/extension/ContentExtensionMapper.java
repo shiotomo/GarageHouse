@@ -9,6 +9,8 @@ import work.tomosse.garage_house.model.db.Content;
 @Mapper
 public interface ContentExtensionMapper {
 
+    public List<Content> selectByContentDataId(Long contentDataId);
+
     /**
      * contentをバルクインサートする
      *

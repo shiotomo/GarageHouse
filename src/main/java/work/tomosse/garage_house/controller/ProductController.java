@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import work.tomosse.garage_house.model.db.Product;
 import work.tomosse.garage_house.service.ColumnManageService;
+import work.tomosse.garage_house.service.ContentDataService;
 import work.tomosse.garage_house.service.ProductService;
 
 @Controller
@@ -24,6 +25,9 @@ public class ProductController {
 
     @Autowired
     ColumnManageService columnManageService;
+
+    @Autowired
+    ContentDataService contentDataService;
 
     /**
      * Productの一覧を表示する
@@ -48,6 +52,7 @@ public class ProductController {
     public ModelAndView show(@PathVariable final Long id, final ModelAndView mav) {
         mav.addObject("product", productService.getProductById(id));
         mav.addObject("columnManageList", columnManageService.selectByProductId(id));
+        mav.addObject("contentMap", contentDataService.getContentMap(id));
         mav.setViewName("product/show");
         return mav;
     }
