@@ -8,5 +8,13 @@
 <body>
   <h1>Content create page</h1>
   <a th:href="@{'/product/' + ${productId}}">Product</a>
+  <form th:action="@{'/product/' + ${productId} + '/content_data/create'}" method="post" th:object="${contentDataRequest}">
+    <th:block th:each="column: ${columnManageList}">
+        <label th:text="${column.getName()}"></label>
+        <input type="text" th:field="*{contentDataMap[__${column.getName()}__]}">
+        <br />
+    </th:block>
+    <input type="submit" value="登録">
+  </form>
 </body>
 </html>

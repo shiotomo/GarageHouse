@@ -9,8 +9,10 @@
   <h1>Product</h1>
   <a th:href="@{/dashboard}">Dashboard</a>
   <a th:href="@{/product}">Product List</a>
-  <a th:href="@{'/product/' + ${product.getId()} + '/column_manage/new'}">Add column</a>
-  <a th:href="@{'/product/' + ${product.getId()} + '/content_data/new'}">Add content data</a>
+  <a th:href="@{'/product/' + ${product.getId()} + '/column_manage/new'}">Add
+    column</a>
+  <a th:href="@{'/product/' + ${product.getId()} + '/content_data/new'}">Add
+    content data</a>
   <br />
   <label>Product Info</label>
   <table>
@@ -51,6 +53,14 @@
       <td th:text="${column.getUpdatedBy()}"></td>
       <td th:text="${column.getCreatedAt()}"></td>
       <td th:text="${column.getUpdatedAt()}"></td>
+    </tr>
+  </table>
+  <label>ContentData List</label>
+  <table>
+    <tr>
+      <th:block th:each="column: ${columnManageList}">
+        <th th:text="${column.getName()}"></th>
+      </th:block>
     </tr>
   </table>
 </body>
