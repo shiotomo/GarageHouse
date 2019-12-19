@@ -1,6 +1,7 @@
 package work.tomosse.garage_house.service;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class ColumnManageService {
      * @param productId
      * @return
      */
-    public Object selectByProductId(final Long productId) {
+    public List<ColumnManage> selectByProductId(final Long productId) {
         return columnManageRepository.selectByProductId(productId);
     }
 

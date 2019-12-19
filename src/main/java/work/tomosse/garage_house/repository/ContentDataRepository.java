@@ -47,4 +47,13 @@ public class ContentDataRepository {
     public Long insertReturnId(final ContentData contentData) {
         return contentDataExtensionMapper.insertReturnId(contentData);
     }
+
+    /**
+     * content_dataを削除する
+     *
+     * @param contentId
+     */
+    public void deleteByContentId(final Long contentId) {
+        contentDataMapper.deleteByPrimaryKey(contentId);
+    }
 }

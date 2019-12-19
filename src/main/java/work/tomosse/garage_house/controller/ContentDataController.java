@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,6 +55,35 @@ public class ContentDataController {
             @PathVariable final Long productId,
             @ModelAttribute final ContentDataRequest contentDataRequest) {
         contentDataService.createContentData(principal, productId, contentDataRequest);
+        return "redirect:/product/" + productId;
+    }
+
+    /**
+     * content_dataを更新するページを表示する
+     *
+     * @param mav
+     * @param contentDataId
+     * @return
+     */
+    @GetMapping("/{contentDataId}/edit")
+    public ModelAndView edit(
+            final ModelAndView mav,
+            @PathVariable final Long productId,
+            @PathVariable final Long contentDataId) {
+        mav.setViewName("content_data/edit");
+        return mav;
+    }
+
+    /**
+     * content_dataを削除する
+     *
+     * @param productId
+     * @param contentId
+     * @return
+     */
+    @DeleteMapping("/{contentDataId}/delete")
+    public String delete(@PathVariable final Long productId, @PathVariable final Long contentDataId) {
+        contentDataService.delete(contentDataId);
         return "redirect:/product/" + productId;
     }
 }

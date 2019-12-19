@@ -9,6 +9,10 @@ spring:
     encoding: UTF-8
   security:
     secret-key:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
 mybatis:
   mapper-locations:
     - classpath*:/db/mybatis/mapper/*.xml

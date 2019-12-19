@@ -37,4 +37,8 @@ public class ContentRepository {
     public int insert(final Content content) {
         return contentMapper.insert(content);
     }
+
+    public void deleteByContentId(final Long contentDataId) {
+        contentExtensionMapper.deleteByContentDataId(contentDataId);
+    }
 }

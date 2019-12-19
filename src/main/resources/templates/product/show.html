@@ -62,6 +62,12 @@
       <th:block th:each="content: ${contents.value}">
         <td th:text="${content.key} + ': ' +  ${content.value}"></td>
       </th:block>
+      <td><a th:href="@{'/product/' + ${product.getId()} + '/content_data/' + ${contents.key} + '/edit'}">update</a></td>
+      <td>
+        <form th:method="delete" th:action="@{'/product/' + ${product.getId()} + '/content_data/' + ${contents.key} + '/delete'}">
+          <input type="submit" value="削除" />
+        </form>
+      </td>
     </tr>
   </table>
 </body>

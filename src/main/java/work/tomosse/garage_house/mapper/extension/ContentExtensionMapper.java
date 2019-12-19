@@ -18,4 +18,11 @@ public interface ContentExtensionMapper {
      * @return
      */
     public int multiInsert(List<Content> contentList);
+
+    /**
+     * content_data_idに紐付いているcontentを削除する
+     *
+     * @param contentDataId
+     */
+    public void deleteByContentDataId(Long contentDataId);
 }

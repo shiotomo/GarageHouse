@@ -85,7 +85,7 @@ public class ContentDataService {
 
         // contentを作成する
         // TODO バルクインサートに変更する
-        contentDataRequest.getContentDataMap().forEach((key, value)-> {
+        contentDataRequest.getContentDataMap().forEach((key, value) -> {
             final var columnManageId = columnNameAndIdMap.get(key);
             final var content = contentLogic.createContentModel(account.getId(), contentData.getId(), columnManageId, value);
             contentRepository.insert(content);
@@ -118,5 +118,15 @@ public class ContentDataService {
             });
         });
         return contentMap;
+    }
+
+    /**
+     * content_dataを削除する
+     *
+     * @param contentId
+     */
+    public void delete(final Long contentDataId) {
+        contentRepository.deleteByContentId(contentDataId);
+        contentDataRepository.deleteByContentId(contentDataId);
     }
 }

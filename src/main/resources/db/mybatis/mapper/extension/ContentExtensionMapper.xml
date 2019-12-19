@@ -6,4 +6,8 @@
   </select>
   <insert id="multiInsert" parameterType="java.util.List">
   </insert>
+  <delete id="deleteByContentDataId" parameterType="java.lang.Long">
+  delete from content
+  where content_data_id = #{contentDataId}
+  </delete>
 </mapper>
